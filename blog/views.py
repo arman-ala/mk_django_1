@@ -3,9 +3,9 @@ from blog.models import Post
 
 
 def blog_view(request):
-    posts = Post.objects.all()
+    published_posts = Post.objects.filter(status=True)
     context = {
-        'posts': posts,
+        'published_posts': published_posts,
     }
     return render(request, 'blog/blog-home.html', context)
 
