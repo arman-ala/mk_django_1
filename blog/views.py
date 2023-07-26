@@ -11,7 +11,10 @@ def blog_view(request):
 
 
 def blog_single(request, pid):
-    post = get_object_or_404(Post, pk=pid)
+    published_posts = Post.objects.filter(status=True)
+    post = get_object_or_404(published_posts, pk=pid)
+
+    # post = get_object_or_404(Post, pk=pid, status=True)
     context = {
         "post": post,
     }
