@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from blog.models import Post
+from blog.models import Post, Category
 
 
 def blog_view(request):
@@ -19,3 +19,17 @@ def blog_single(request, pid):
         "post": post,
     }
     return render(request, 'blog/blog-single.html', context)
+
+
+def blog_category(request, category_name):
+    published_posts = Post.objects.filter(status=True)
+    selected_posts = []
+    
+    for post in published_posts:
+        for cat in post.category.all():
+            if category_name == cat.name:
+                selected_posts.append(post)
+    context = {
+        'published_posts': selected_posts,
+    }
+    return render(request, 'blog/blog-home.html', context)
