@@ -4,7 +4,7 @@
         {% for category, count in categories.items %}
             {% if count > 0 %}
             <li>
-                <a href="#" class="d-flex justify-content-between">
+                <a href="{% url 'blog:category' category_name=category %}" class="d-flex justify-content-between">
                     <p>{{ category }}</p>
                     <p>{{ count }}</p>
                 </a>
