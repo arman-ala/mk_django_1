@@ -37,10 +37,10 @@ def blog_single(request, pid):
 
 
 def blog_search(request):
-    if  request.method == 'GET':
+    if request.method == 'GET':
         published_posts = Post.objects.filter(status=True)
-        search_paramete = request.GET['search']
-        selected_posts = published_posts.filter(content__contains=search_paramete)
+        if search_paramete := request.GET.get('search'):
+            selected_posts = published_posts.filter(content__contains=search_paramete)
     context = {
         'published_posts': selected_posts,
     }
