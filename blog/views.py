@@ -36,6 +36,17 @@ def blog_single(request, pid):
     return render(request, 'blog/blog-single.html', context)
 
 
+def blog_search(request):
+    if  request.method == 'GET':
+        published_posts = Post.objects.filter(status=True)
+        search_paramete = request.GET['search']
+        selected_posts = published_posts.filter(content__contains=search_paramete)
+    context = {
+        'published_posts': selected_posts,
+    }
+    return render(request, 'blog/blog-home.html', context)
+
+
 # def blog_category(request, category_name):
 #     published_posts = Post.objects.filter(status=True)
 #     selected_posts = []
