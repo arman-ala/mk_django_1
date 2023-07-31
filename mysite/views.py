@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import ContactForm
 
 
 def index_view(request):
@@ -11,4 +12,9 @@ def about_view(request):
 
 
 def contact_view(request):
-    return render(request, 'mysite/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(data = request.POST)
+        if form.is_valid():
+            form.save()
+    form = ContactForm()
+    return render(request, 'mysite/contact.html', {'form':form})
