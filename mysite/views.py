@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .forms import ContactForm
+from django.http import HttpResponse, HttpResponseRedirect
+from .forms import ContactForm, NewsletterForm
 
 
 def index_view(request):
@@ -18,3 +18,11 @@ def contact_view(request):
             form.save()
     form = ContactForm()
     return render(request, 'mysite/contact.html', {'form':form})
+
+
+def newsletter_view(request):
+    if request.method == 'POST':
+        form = NewsletterForm(data = request.POST)
+        if form.is_valid():
+            form.save()
+    return HttpResponseRedirect('/')
