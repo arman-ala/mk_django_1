@@ -29,7 +29,6 @@ def blog_view(request, category_name=None, author_name=None):
     context = {
         'published_posts': selected_posts,
     }
-    print(f"\n\n\n\n\n\n{context['published_posts']}\n\n\n\n\n\n")
     return render(request, 'blog/blog-home.html', context)
 
 
