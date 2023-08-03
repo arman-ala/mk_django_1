@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django_extensions',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     
     'mysite.apps.MysiteConfig',
     'blog.apps.BlogConfig',
