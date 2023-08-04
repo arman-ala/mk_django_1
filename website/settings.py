@@ -36,6 +36,8 @@ SITE_ID = 1
 ROBOTS_USE_SITEMAP = False
 ROBOTS_USE_HOST = False
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'robots',
-    'debug_toolbar',
+    # 'debug_toolbar',
     
     'mysite.apps.MysiteConfig',
     'blog.apps.BlogConfig',
@@ -64,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'website.urls'
@@ -152,3 +155,24 @@ GRAPH_MODELS = {
     'all_applications': True,
     'group_models': True,
 }
+
+# debug toolbar settings
+if DEBUG:
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
+    INTERNAL_IPS = ['127.0.0.1', ]
+
+    # this is the main reason for not showing up the toolbar
+    import mimetypes
+    mimetypes.add_type("application/javascript", ".js", True)
+
+    DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+    }
+    print("AAAAAAAAAAAA")
+# mimetypes
+# mimetypes.add_type("application/javascript", ".js", True)
