@@ -29,8 +29,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# sites framework settings
 SITE_ID = 1
 
+# robots settings
+ROBOTS_USE_SITEMAP = False
+ROBOTS_USE_HOST = False
 
 # Application definition
 
