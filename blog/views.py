@@ -3,7 +3,7 @@ from blog.models import Post, Category
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-def blog_view(request, category_name=None, author_name=None):
+def blog_view(request, category_name=None, author_name=None, tag_name=None):
     published_posts = Post.objects.filter(status=True)
     selected_posts = []
     context = {}
@@ -16,6 +16,9 @@ def blog_view(request, category_name=None, author_name=None):
     if category_name == None and author_name != None:
         published_posts = published_posts.filter(author__username = author_name)
         # return render(request, 'blog/blog-home.html', context)
+        
+    if category_name == None and author_name == None and tag_name != None:
+        pass #published_posts = published_posts.filter(author__username = author_name)
     # handling pgination
     try:
         page_number = request.GET.get('page')
