@@ -174,6 +174,5 @@ if DEBUG:
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
     }
-    print("AAAAAAAAAAAA")
 # mimetypes
 # mimetypes.add_type("application/javascript", ".js", True)
