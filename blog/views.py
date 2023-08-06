@@ -18,7 +18,7 @@ def blog_view(request, category_name=None, author_name=None, tag_name=None):
         # return render(request, 'blog/blog-home.html', context)
         
     if category_name == None and author_name == None and tag_name != None:
-        pass #published_posts = published_posts.filter(author__username = author_name)
+        published_posts = published_posts.filter(tags__name__in=[tag_name])
     # handling pgination
     try:
         page_number = request.GET.get('page')
